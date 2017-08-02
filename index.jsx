@@ -3,7 +3,7 @@ import  {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 're
 import react from 'react';
 // const wiki = require('wikijs').default;
 let count = 0;
-let results = [];
+const results = [];
 let htmlresults = '';
 // wiki().page('Batman')
 
@@ -39,7 +39,7 @@ function wikicallRand (limit=5,queue = 'Schadenfreude'){
     queue=[queue];
   }
   if (count >= limit){
-    debugger;
+    hashMap(results);
     return null;
   }
   count += 1;
@@ -53,11 +53,11 @@ function wikicallRand (limit=5,queue = 'Schadenfreude'){
       results.push(el);
     });
   })
-  .then(setTimeout(()=>wikicallRand(limit,queue),3000));
+  .then(setTimeout(()=>wikicallRand(limit,queue),2500));
   console.log('results',results);
 }
 
-wikicallRand(15,'bread');
+wikicallRand(5,'bread');
 // let numUniqueHits = [...new Set(results)].length;
 //
 // wiki().page('Leavening_agent').then(page => {debugger;}
@@ -65,6 +65,7 @@ wikicallRand(15,'bread');
 
 function wikicall2 (){
   if (count >= 5){
+    hashMap(results);
     return null;
   }
   count += 1;
@@ -82,10 +83,46 @@ function wikicall2 (){
       debugger;
     });
   })
-  .then(setTimeout(()=>wikicall2(),7000));
+  .then(setTimeout(()=>wikicall2(),3000));
   debugger;
 }
 // wikicall2();
 
 // .then(page => {debugger;});
 //
+function hashMap(array){
+  let hashObj = {};
+  let returnArray = [];
+  array.forEach(function(el){
+    if (hashObj[el]){
+      hashObj[el] += 1;
+    }
+    else{
+      hashObj[el] = 1;
+    }
+  });
+  let keys = Object.keys(hashObj);
+  keys.sort(function(a, b) {
+    return hashObj[a] - hashObj[b];
+  });
+  keys=keys.reverse();
+  keys=keys.slice(0,10);//top 10 values
+  console.log("hashObj",hashObj);
+  console.log("keys",keys);
+  keys.forEach(function(el){
+    returnArray.push([el,hashObj[el]]);
+  });
+  console.log(returnArray);
+}
+
+
+function getSortedHash(inputHash){
+  var resultHash = {};
+  var keys = Object.keys(inputHash);
+  keys.sort(function(a, b) {
+    return inputHash[a] - inputHash[b];
+  }).reverse().forEach(function(k) {
+    resultHash[k] = inputHash[k];
+  });
+  return resultHash;
+}
