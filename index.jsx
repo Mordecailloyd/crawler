@@ -22,8 +22,6 @@ function wikicall (limit=5,queue = 'Schadenfreude'){
     return null;
   }
   count += 1;
-  console.log(count);
-  console.log(results);
   wiki().page(queue.shift())
   .then(page => page.links())
   .then(links=>{
@@ -43,8 +41,6 @@ function wikicallRand (limit=5,queue = 'Schadenfreude'){
     return null;
   }
   count += 1;
-  console.log(count);
-  console.log(results);
   wiki().page(queue.shift())
   .then(page => page.links())
   .then(links=>{
@@ -54,7 +50,6 @@ function wikicallRand (limit=5,queue = 'Schadenfreude'){
     });
   })
   .then(setTimeout(()=>wikicallRand(limit,queue),2500));
-  console.log('results',results);
 }
 
 wikicallRand(10,'results');
@@ -107,8 +102,6 @@ function hashMap(array){
   });
   keys=keys.reverse();
   keys=keys.slice(0,10);//top 10 values
-  console.log("hashObj",hashObj);
-  console.log("keys",keys);
   keys.forEach(function(el){
     returnArray.push({[el]: hashObj[el]});
   });
