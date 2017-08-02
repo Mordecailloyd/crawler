@@ -57,7 +57,7 @@ function wikicallRand (limit=5,queue = 'Schadenfreude'){
   console.log('results',results);
 }
 
-wikicallRand(5,'bread');
+wikicallRand(10,'results');
 // let numUniqueHits = [...new Set(results)].length;
 //
 // wiki().page('Leavening_agent').then(page => {debugger;}
@@ -110,7 +110,7 @@ function hashMap(array){
   console.log("hashObj",hashObj);
   console.log("keys",keys);
   keys.forEach(function(el){
-    returnArray.push([el,hashObj[el]]);
+    returnArray.push({[el]: hashObj[el]});
   });
   console.log(returnArray);
 }
