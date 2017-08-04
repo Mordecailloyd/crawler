@@ -42,7 +42,7 @@ function callRenderLinks (array){
   );
   ReactDOM.render(
     <div>
-      <h5>Links Hit</h5>
+      <h4>Links Hit</h4>
       <ul>
         {hitLinkList}
       </ul>
@@ -153,7 +153,7 @@ function wikicall2 (){
   .then(setTimeout(()=>wikicall2(),3000));
 }
 
-function hashMap(array){
+function hashMap(array,slice=15){
   let hashObj = {};
   let returnArray = [];
   array.forEach(function(el){
@@ -169,7 +169,7 @@ function hashMap(array){
     return hashObj[a] - hashObj[b];
   });
   keys=keys.reverse();
-  keys=keys.slice(0,20);//top 10 values
+  keys=keys.slice(0,slice);//top 15 values
   keys.forEach(function(el){
     returnArray.push({'name': el,  'Times Hit': hashObj[el]});
   });
