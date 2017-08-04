@@ -3,7 +3,7 @@
 
 [Wiki Crawler live][github]
 
-[github]: https://https://github.com/Mordecailloyd/crawler
+[github]: https://github.com/Mordecailloyd/crawler
 
 
 
