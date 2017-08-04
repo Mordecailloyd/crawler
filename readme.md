@@ -3,14 +3,9 @@
 
 [Wiki Crawler live][github]
 
-[github]: https://
+[github]: https://https://github.com/Mordecailloyd/crawler
 
 
-
-
-
-Outdoor-Adventure-World is a web application inspired by MooseJaw. In contrast to the Moosejaw website, Outdoor-Adventure-World is a single page application that runs off a static page using the React-Redux cycle. My site only re-renders individual components as needed due to changes in slices of the state.
-Outdoor-Adventure-World is built on a PostgreSQL database, with a Ruby on Rails back-end. I use Jbuilder to generate JSON objects for the front-end, which is written in Javascript using React and Redux to maintain the single page application.
 
 Wiki Crawler is a front-end application which provides data visualizations for pulled information from wikipedia pages. Wiki Crawler is built entirely on the front-end using Javacript. The site dynamically renders the graph as new links are hit and crawled for information.
 
@@ -28,47 +23,40 @@ Wiki Crawler targets a users starting link and makes a request to the WIKI api t
 
 ### Data Visualization
 
-Using the Recharts module
+Wiki Crawler builds a graph of the 15 most found links on the ten crawled pages. It retrieves all links from the given wikipedia page and builds a Hash with them. While the crawled begins fetching data from the next chosen link the program will collapse all elements in the hash and count collisions to build a dataset which will ultimately be turned into objects to build a graph. By building the graph in this fashion the delay between fetching the data in an ajax request and parsing it, is not as visible to the user. The user additionally gets a feeling for the kind of links found commonly on given pages by comparing the graph with the re-rendered list of hit links.
 
-```ruby
-Rails.application.routes.draw do
-  namespace :api, defaults: {format: :json} do
-    resources :users, only: [:create]
-    resource :sessions, only: [:create, :destroy]
-    resources :messages, only: [:create, :destroy, :update, :index]
-    resources :products, only: [:index, :show]
-    resources :carts, only: [:create, :index, :destroy, :show]
-    delete "/user/cart/", to: "carts#destroy_all"
-  end
-  root "static_pages#root"
-end
-```
-
-### Search Bar Utilizing Query Strings
-
-The search bar located in the header of the website, permits a user to enter their own search terms. They may search by brand name or product name. This input is updated on keypress and the search initiated.
-The search is handled on the back-end which takes the user input and strips it of case, white-space, and special characters. A query string is created with this input for the database and the controller returns to the front-end a list of products matching the request.
 
 
 # Screenshots
 
-
 ## Search
 
-![results screenshot](./docs/screenshots/Search.png)
+![results screenshot](https://github.com/Mordecailloyd/crawler/blob/master/images/image4.png)
 
 ## Graph
 
-![product screenshot](./docs/screenshots/show.png)
+![product screenshot](https://github.com/Mordecailloyd/crawler/blob/master/images/image3.png)
 
-![product screenshot](./docs/screenshots/show_features.png)
+![product screenshot](https://github.com/Mordecailloyd/crawler/blob/master/images/image2.png)
 
 # Future Directions for the Project
 
-###
+### Different Search Types
 
-###
+Most of the work necessary to search by first and last link alphabetically exists. Several hours of work are required to fetch the first link on the page (Avoiding certain links is proving troublesome) and build buttons/ input fields for users to choose which kind of search to begin.
 
-###
+### Multiple Graph Types
 
-### 
+Allow users to choose more graph types/data to display based on the crawled information. The potential  here is near limitless and will prove a fruitful effort for personal curiosity.
+
+### Graph Information
+
+Build a column for the graphs showing interesting information such as the number of links with only one instance through all crawled pages ( the logic is already written ) or what percentage of links contain more than one hit.
+
+### Combined Graph Creation
+
+Build a web graph that combines the data from multiple searches to show path-ing toward a given link (ie: philosophy, graphing the links crawled through rather than the links found.) Allowing the graph to grow dynamically as future searches are made. This will take a large amount of work however it will be very useful to defeat the challenges involved in creating a graph.
+
+###  Asynchronous Calls
+
+Develop a way to request the crawled information asynchronously to speed up the rate of fetching information. Using set-timeouts functions however it is not optimal.
