@@ -10,14 +10,11 @@ This webcrawler will find links on a chosen ( or predetermined) Wikipedia page a
 
 Users will be able to:
 
+- [ ] Crawl wikipedia.
 - [ ] See a visual representation of crawled through links.
 - [ ] Choose a starting link from wikipedia.
-- [ ] Learn how to use the site with a tutorial.
+- [ ] Display a graph of most common links found.
 
-In addition, this project will include:
-
-- [ ] An about modal describing how to use the app.
-- [ ] A production Readme
 
 ### Wireframes
 

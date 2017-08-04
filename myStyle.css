@@ -1,0 +1,21 @@
+
+.graph{
+  align-content: center;
+  width: 75vw;
+}
+.instructions{
+  width: 50vw;
+}
+.input button{
+  border-radius: 35%;
+  color: white;
+  background-color: #82CA9D;
+}
+.input input{
+
+}
+.graphInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}

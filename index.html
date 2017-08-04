@@ -1,23 +1,24 @@
-
-
-
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset = "UTF-8">
-    <title>SecondPage.html</title>
+    <title>Wiki Crawler</title>
     <link rel = "stylesheet"
       type = "text/css"
       href = "myStyle.css" />
-    <title>WikiCrawler Graphs</title>
   </head>
-
   <body>
-    <div className = "graph" id='foo'>
+    <h2>Wikipedia Web Crawler</h2>
+    <div class = 'graphInfo'>
+      <div class = "graph" id='foo'>
+      </div>
+      <div id = 'linkList' class = "linksHit">
+      </div>
     </div>
-    <div className = 'input'>
+    <div class = 'input'>
       <input id="textField" />
       <button id="makeGraph"> Make Random Graph </button>
-      <h3 className = ''> Crawl 10 links from Wikipedia, choose a starting position and the crawler will pick a link at random from the page. The graph shows the ten most frequent links.</h3>
+      <h3 class = 'instructions'> Crawl 10 links from Wikipedia, choose a starting position and the crawler will pick a link at random from the page. The graph shows the twenty most frequent links.</h3>
     </div>
     <div id='sitesVisited'>
     </div>

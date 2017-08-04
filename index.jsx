@@ -4,27 +4,26 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 
 let count = 0;
-const results = [];
+let results = [];
 let htmlresults = '';
-
+let linksHit = [];
 
 let dataset1 = [
-      {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
-      {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
-      {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
-      {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
-      {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
-      {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
-      {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
+      {name: 'Vector Space', 'Times Hit': 6, pv: 2400, amt: 2400},
+      {name: 'Mathematics', 'Times Hit': 5, pv: 1398, amt: 2210},
+      {name: 'Transpose', 'Times Hit': 5, pv: 9800, amt: 2290},
+      {name: 'Exterior Derivative', 'Times Hit': 4, pv: 3908, amt: 2000},
+      {name: 'Integral', 'Times Hit': 4, pv: 4, amt: 2181},
+      {name: 'Derivative', 'Times Hit': 3, pv: 3, amt: 2500},
+      {name: 'Differential Geometry', 'Times Hit': 2, pv: 4300, amt: 2100},
 ];
 
 callRender(dataset1);
 
 
 function callRender (data){
-  console.log('render called');
   ReactDOM.render(
-    <BarChart width={600} height={300} data={data}
+    <BarChart width={800} height={300} data={data}
           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
      <XAxis dataKey="name"/>
      <YAxis/>
@@ -36,7 +35,21 @@ function callRender (data){
     document.getElementById('foo')
   );
 }
-
+function callRenderLinks (array){
+  const hitLinkList = array.map((el)=>(
+    <li key = {el}>{el}</li>
+    )
+  );
+  ReactDOM.render(
+    <div>
+      <h5>Links Hit</h5>
+      <ul>
+        {hitLinkList}
+      </ul>
+    </div>,
+    document.getElementById('linkList')
+  );
+}
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -67,20 +80,25 @@ function wikicallRand (queue = 'Schadenfreude',limit=10){
     queue=[queue];
   }
   if (count >= limit){
+    linksHit=[];
     count = 0;
     hashMap(results);
+    results = [];
     return null;
   }
+  linksHit.push(queue[0]);
   count += 1;
   wiki().page(queue.shift())
   .then(page => page.links())
   .then(links=>{
+    setTimeout(()=>hashMap(results),300);
+    setTimeout(()=>callRenderLinks(linksHit),350);
     queue.push(links[getRandomInt(0,links.length)]);
     links.forEach(function(el){
       results.push(el);
     });
   })
-  .then(setTimeout(()=>wikicallRand(queue,limit),2500));
+  .then(setTimeout(()=>wikicallRand(queue,limit),3500));
 }
 
 function wikicallFirst (limit=5,queue = 'Schadenfreude'){
@@ -109,7 +127,6 @@ function wikicallFirst (limit=5,queue = 'Schadenfreude'){
     });
   })
   .then(setTimeout(()=>wikicallFirst(limit,queue),2500));
-  console.log("visited pages",pagesVisited);
 }
 
 
@@ -131,11 +148,9 @@ function wikicall2 (){
       links.forEach(function(el){
         results.push(el);
       });
-      debugger;
     });
   })
   .then(setTimeout(()=>wikicall2(),3000));
-  debugger;
 }
 
 function hashMap(array){
@@ -154,16 +169,14 @@ function hashMap(array){
     return hashObj[a] - hashObj[b];
   });
   keys=keys.reverse();
-  keys=keys.slice(0,10);//top 10 values
+  keys=keys.slice(0,20);//top 10 values
   keys.forEach(function(el){
     returnArray.push({'name': el,  'Times Hit': hashObj[el]});
   });
-  console.log('return array',returnArray);
-  console.log('array',array);
+
   callRender(returnArray);
 }
 
 document.getElementById('makeGraph').addEventListener("click", function(){
-  debugger;
   wikicallRand(document.getElementById('textField').value);
 });
