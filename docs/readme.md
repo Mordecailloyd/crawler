@@ -24,7 +24,7 @@ This app will consist of a single screen with a sample graph of data from a give
 - reg-ex to search for
 - depth of search
 - options for search( ex: first link found, last link found, median link, mean link.)
-![wireframe](https://github.com/Mordecailloyd/crawler/blob/master/image1.JPG)
+![wireframe](https://github.com/Mordecailloyd/crawler/blob/master/images/image1.JPG)
 
 ### Architecture and Technologies
 
