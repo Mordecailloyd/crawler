@@ -5,18 +5,22 @@ module.exports = {
     path: __dirname,
     filename: 'bundle.js',
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '*']
+  },
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015']
+          presets: ['react', 'es2015']
         }
       }
     ]
   },
+  // devtool: 'source-maps',
   externals: {
     "isomorphic-fetch": "fetch",
   }

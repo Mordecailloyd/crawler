@@ -1,11 +1,27 @@
+
+
+
 <html>
   <head>
-    <title>JS Project</title>
+    <meta charset = "UTF-8">
+    <title>SecondPage.html</title>
+    <link rel = "stylesheet"
+      type = "text/css"
+      href = "myStyle.css" />
+    <title>WikiCrawler Graphs</title>
   </head>
 
   <body>
+    <div className = "graph" id='foo'>
+    </div>
+    <div className = 'input'>
+      <input id="textField" />
+      <button id="makeGraph"> Make Random Graph </button>
+      <h3 className = ''> Crawl 10 links from Wikipedia, choose a starting position and the crawler will pick a link at random from the page. The graph shows the ten most frequent links.</h3>
+    </div>
+    <div id='sitesVisited'>
+    </div>
     <script src= 'bundle.js' >
     </script>
-
   </body>
 </html>
